@@ -6,10 +6,17 @@ const chalk = require('chalk');//给提示文案着色
 const download = require('download-git-repo');//拉取github项目
 const fs = require('fs');
 const minimist = require('minimist')
+const figlet = require("figlet");
+const Printer = require("@darkobits/lolcatjs");
 
-// 提示样式
+// 成功和失败样式
 const success = chalk.blueBright;
 const error = chalk.bold.red;
+//logo
+const logotext = figlet.textSync("my-cli");
+const logotextColor = Printer.fromString(logotext);
+//version
+const version=`${logotextColor} ${require('../package').version}`;
 
 const templateUrl = 'github:napoleonjk/tmp-vue3-template#main';//github项目地址
 
@@ -28,7 +35,7 @@ const changePackage = (appName) => {
 };
 
 program
-    .version(`my-cli ${require('../package').version}`)
+    .version(version)
     .usage('<command> [options]')
 
 program.command('init <app-name>')
@@ -39,6 +46,7 @@ program.command('init <app-name>')
         if (minimist(arr)._.length > 1) {
             console.log(chalk.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'));
         }
+        console.log(version);
         const spinner = ora('正在拉取模板...').start();//开启进度条
         const appName=arr[0];
         const dir = path.join(process.cwd(),appName);
