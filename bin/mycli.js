@@ -50,7 +50,7 @@ program.command('init <app-name>')
                 changePackage(appName);
                 spinner.succeed(success('项目初始化成功'));
                 spinner.succeed(success(`cd ${appName}`));
-                spinner.succeed(success('npm run serve'));
+                spinner.succeed(success('npm install && npm run serve'));
             } else {
                 console.log(err);
                 spinner.fail(error('拉取失败'));
