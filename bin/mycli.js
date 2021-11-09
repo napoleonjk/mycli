@@ -5,20 +5,20 @@ const ora = require('ora');//进度条
 const chalk = require('chalk');//给提示文案着色
 const download = require('download-git-repo');//拉取github项目
 const fs = require('fs');
-const minimist = require('minimist')
-const figlet = require("figlet");
-const Printer = require("@darkobits/lolcatjs");
+const minimist = require('minimist')//轻量级命令行参数解析引擎
+const figlet = require("figlet");//酷炫的文字工具
+const printer = require("@darkobits/lolcatjs");//生成颜色
 
-// 成功和失败样式
+// 成功和失败文案着色
 const success = chalk.blueBright;
 const error = chalk.bold.red;
 //logo
 const logotext = figlet.textSync("my-cli");
-const logotextColor = Printer.fromString(logotext);
+const logotextColor = printer.fromString(logotext);
 //version
 const version=`${logotextColor} ${require('../package').version}`;
-
-const templateUrl = 'github:napoleonjk/tmp-vue3-template#main';//github项目地址
+//github项目地址
+const templateUrl = 'github:napoleonjk/tmp-vue3-template#main';
 
 // 替换模板package.json文件的name字段
 const changePackage = (appName) => {
